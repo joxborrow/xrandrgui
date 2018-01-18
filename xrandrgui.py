@@ -14,11 +14,13 @@ class xrandrgui:
         self.initialize(master)
 
     def initialize(self, master):
+        # Get attached monitors
+        monitors = subprocess.getoutput("xrandr --query | awk '/ connected / {print $1}'")
 
         # Output
         self.label0 = Label(master, text="Output")
         self.label0.grid(row=0, column=0)
-        output_options = ["eDP", "VGA"]
+        output_options = tuple(monitors.split("\n"))
         op1 = StringVar(master)
         op1.set(output_options[0])
         self.optionmenu1 = OptionMenu(master, op1, *output_options)
