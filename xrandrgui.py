@@ -10,7 +10,7 @@ def run_prog():
 class xrandrgui:
     def __init__(self, master):
         self.master = master
-        master.title("A simple GUI")
+        master.title("Simple xrandr GUI")
         self.initialize(master)
 
     def initialize(self, master):
@@ -24,17 +24,17 @@ class xrandrgui:
         op1 = StringVar(master)
         op1.set(output_options[0])
         self.optionmenu1 = OptionMenu(master, op1, *output_options)
-        self.optionmenu1.grid(row=0, column=1)
+        self.optionmenu1.grid(row=0, column=1, sticky="W")
 
         # Brightness
         self.label1 = Label(master, text="Brightness")
-        self.label1.grid(row=1, column=0)
+        self.label1.grid(row=1, column=0, sticky="SE")
         self.sc_brightness = Scale(master, from_=0, to=200, orient=HORIZONTAL)
         self.sc_brightness.grid(row=1, column=1)
 
         # Gamma
         self.label2 = Label(master, text="Gamma")
-        self.label2.grid(row=2, column=0)
+        self.label2.grid(row=2, column=0, sticky="S")
 
         # R
         self.label3 = Label(master, text="R ")
