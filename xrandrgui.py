@@ -1,8 +1,6 @@
 from tkinter import *
 import subprocess
 
-
-
 # Create GUI
 class xrandrgui:
     def __init__(self, master):
@@ -26,7 +24,7 @@ class xrandrgui:
         # Brightness
         self.label1 = Label(master, text="Brightness")
         self.label1.grid(row=1, column=0, sticky="SE")
-        self.sc_brightness = Scale(master, from_=0, to=5, length=300,
+        self.sc_brightness = Scale(master, from_=0, to_=5, length=300,
                                    orient=HORIZONTAL, resolution=.05,
                                    command=self.run_prog)
         self.sc_brightness.grid(row=1, column=1)
