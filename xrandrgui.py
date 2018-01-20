@@ -26,7 +26,9 @@ class xrandrgui:
         # Brightness
         self.label1 = Label(master, text="Brightness")
         self.label1.grid(row=1, column=0, sticky="SE")
-        self.sc_brightness = Scale(master, from_=0, to=200, orient=HORIZONTAL)
+        self.sc_brightness = Scale(master, from_=0, to=5, length=300,
+                                   orient=HORIZONTAL, resolution=.05,
+                                   command=self.run_prog)
         self.sc_brightness.grid(row=1, column=1)
 
         # Gamma
@@ -60,10 +62,11 @@ class xrandrgui:
         self.close_button.grid(row=6, column=4)
 
     # Execute xrandr
-    def run_prog(self):
+    def run_prog(self, value):
+        # Build xrandr command
         command_string = 'xrandr --output '
         command_string = command_string + self.op1.get()
-        command_string = command_string + ' --brightness 1'
+        command_string = command_string + ' --brightness ' + str(self.sc_brightness.get())
         subprocess.call(command_string, shell=True)
 
 # Main
