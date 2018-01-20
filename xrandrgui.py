@@ -2,9 +2,6 @@ from tkinter import *
 import subprocess
 
 
-# Execute xrandr
-def run_prog():
-    subprocess.call("xrandr --output eDP --brightness .5", shell=True)
 
 # Create GUI
 class xrandrgui:
@@ -21,9 +18,9 @@ class xrandrgui:
         self.label0 = Label(master, text="Output")
         self.label0.grid(row=0, column=0)
         output_options = tuple(monitors.split("\n"))
-        op1 = StringVar(master)
-        op1.set(output_options[0])
-        self.optionmenu1 = OptionMenu(master, op1, *output_options)
+        self.op1 = StringVar(master)
+        self.op1.set(output_options[0])
+        self.optionmenu1 = OptionMenu(master, self.op1, *output_options)
         self.optionmenu1.grid(row=0, column=1, sticky="W")
 
         # Brightness
@@ -55,16 +52,21 @@ class xrandrgui:
         self.sc_b.grid(row=5, column=1)
 
         # Apply
-        self.bt_apply = Button(master, text="Apply", command=run_prog)
+        self.bt_apply = Button(master, text="Apply", command=self.run_prog)
         self.bt_apply.grid(row=6, column=3)
 
         # Close
         self.close_button = Button(master, text="Close", command=master.quit)
         self.close_button.grid(row=6, column=4)
 
+    # Execute xrandr
+    def run_prog(self):
+        command_string = 'xrandr --output '
+        command_string = command_string + self.op1.get()
+        command_string = command_string + ' --brightness 1'
+        subprocess.call(command_string, shell=True)
 
-
-
+# Main
 if __name__ == '__main__':
     root = Tk()
     my_gui = xrandrgui(root)
