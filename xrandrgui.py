@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from tkinter import *
 import subprocess
 
@@ -28,6 +30,7 @@ class xrandrgui:
                                    orient=HORIZONTAL, resolution=.05,
                                    command=self.run_prog)
         self.sc_brightness.grid(row=1, column=1)
+        self.sc_brightness.set(1)
 
         # Gamma
         self.label2 = Label(master, text="Gamma")
@@ -36,20 +39,29 @@ class xrandrgui:
         # R
         self.label3 = Label(master, text="R ")
         self.label3.grid(row=3, column=0, sticky="SE")
-        self.sc_r = Scale(master, from_=0, to=100, orient=HORIZONTAL)
+        self.sc_r = Scale(master, from_=0.5, to_=5, length=300,
+                          orient=HORIZONTAL, resolution=.05,
+                          command=self.run_prog)
         self.sc_r.grid(row=3, column=1)
 
         # G
         self.label4 = Label(master, text="G ")
         self.label4.grid(row=4, column=0, sticky="SE")
-        self.sc_g = Scale(master, from_=0.0, to=100.0, orient=HORIZONTAL)
+        self.sc_g = Scale(master, from_=0.5, to_=5, length=300,
+                          orient=HORIZONTAL, resolution=.05,
+                          command=self.run_prog)
         self.sc_g.grid(row=4, column=1)
 
         # B
         self.label5 = Label(master, text="B ")
         self.label5.grid(row=5, column=0, sticky="SE")
-        self.sc_b = Scale(master, from_=0, to=100, orient=HORIZONTAL)
+        self.sc_b = Scale(master, from_=0.5, to_=5, length=300,
+                          orient=HORIZONTAL, resolution=.05,
+                          command=self.run_prog)
         self.sc_b.grid(row=5, column=1)
+
+        # Command Label
+        self.label6 = Label(master,)
 
         # Apply
         self.bt_apply = Button(master, text="Apply", command=self.run_prog)
@@ -65,6 +77,9 @@ class xrandrgui:
         command_string = 'xrandr --output '
         command_string = command_string + self.op1.get()
         command_string = command_string + ' --brightness ' + str(self.sc_brightness.get())
+        command_string = command_string + ' --gamma ' + str(self.sc_r.get()) + ":" + \
+                         str(self.sc_g.get()) + ":" + str(self.sc_b.get())
+        print(command_string)
         subprocess.call(command_string, shell=True)
 
 # Main
