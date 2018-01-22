@@ -30,7 +30,6 @@ class xrandrgui:
                                    orient=HORIZONTAL, resolution=.05,
                                    command=self.run_prog)
         self.sc_brightness.grid(row=1, column=1)
-        self.sc_brightness.set(1)
 
         # Gamma
         self.label2 = Label(master, text="Gamma")
@@ -39,7 +38,7 @@ class xrandrgui:
         # R
         self.label3 = Label(master, text="R ")
         self.label3.grid(row=3, column=0, sticky="SE")
-        self.sc_r = Scale(master, from_=0.5, to_=5, length=300,
+        self.sc_r = Scale(master, from_=0, to_=5, length=300,
                           orient=HORIZONTAL, resolution=.05,
                           command=self.run_prog)
         self.sc_r.grid(row=3, column=1)
@@ -47,7 +46,7 @@ class xrandrgui:
         # G
         self.label4 = Label(master, text="G ")
         self.label4.grid(row=4, column=0, sticky="SE")
-        self.sc_g = Scale(master, from_=0.5, to_=5, length=300,
+        self.sc_g = Scale(master, from_=0, to_=5, length=300,
                           orient=HORIZONTAL, resolution=.05,
                           command=self.run_prog)
         self.sc_g.grid(row=4, column=1)
@@ -55,7 +54,7 @@ class xrandrgui:
         # B
         self.label5 = Label(master, text="B ")
         self.label5.grid(row=5, column=0, sticky="SE")
-        self.sc_b = Scale(master, from_=0.5, to_=5, length=300,
+        self.sc_b = Scale(master, from_=0, to_=5, length=300,
                           orient=HORIZONTAL, resolution=.05,
                           command=self.run_prog)
         self.sc_b.grid(row=5, column=1)
@@ -63,13 +62,11 @@ class xrandrgui:
         # Command Label
         self.label6 = Label(master,)
 
-        # Apply
-        self.bt_apply = Button(master, text="Apply", command=self.run_prog)
-        self.bt_apply.grid(row=6, column=3)
-
-        # Close
-        self.close_button = Button(master, text="Close", command=master.quit)
-        self.close_button.grid(row=6, column=4)
+        # Initialize control values
+        self.sc_brightness.set(1)
+        self.sc_r.set(1)
+        self.sc_g.set(1)
+        self.sc_b.set(1)
 
     # Execute xrandr
     def run_prog(self, value):
