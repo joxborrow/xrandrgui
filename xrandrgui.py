@@ -14,6 +14,10 @@ class xrandrgui:
         # Get attached monitors
         monitors = subprocess.getoutput("xrandr --query | awk '/ connected / {print $1}'")
 
+        # Frame
+        frame1=Frame(self.master, width=370, height=230)
+        frame1.grid(columnspan=3, rowspan=7, padx=5, pady=5)
+
         # Output
         self.label0 = Label(master, text="Output")
         self.label0.grid(row=0, column=0)
