@@ -14,23 +14,27 @@ class xrandrgui(tk.Frame):
         # Get attached monitors
         monitors = sp.getoutput("xrandr --query | awk '/ connected / {print $1}'")
 
+        # Initialize Frame 1
+        Frame1 = tk.Frame(master, bg="Red")
+        Frame1.grid(row=0, column=0, rowspan=2, columnspan=2, sticky="EWNS", padx=10, pady=(10,0))
+
         # Output
-        self.label0 = tk.Label(master, text="Output")
+        self.label0 = tk.Label(Frame1, text="Output")
         self.label0.grid(row=0, column=0, padx=2, pady=2, sticky="E")
         output_options = tuple(monitors.split("\n"))
         self.op1 = tk.StringVar(master)
         self.op1.set(output_options[0])
-        self.optionmenu1 = tk.OptionMenu(master, self.op1, *output_options)
+        self.optionmenu1 = tk.OptionMenu(Frame1, self.op1, *output_options)
         self.optionmenu1.config(width=10)
         self.optionmenu1.grid(row=0, column=1, sticky="W", padx=2, pady=2)
 
         # Resolution
-        self.label01 = tk.Label(master, text="Resolution")
+        self.label01 = tk.Label(Frame1, text="Resolution")
         self.label01.grid(row=1, column=0, padx=2, pady=2, sticky="E")
         resolution_options = ["test1", "test2"]
         self.op2 = tk.StringVar(master)
         self.op2.set(resolution_options[0])
-        self.optionmenu2 = tk.OptionMenu(master, self.op2, *resolution_options)
+        self.optionmenu2 = tk.OptionMenu(Frame1, self.op2, *resolution_options)
         self.optionmenu2.config(width=10)
         self.optionmenu2.grid(row=1, column=1, sticky="W", padx=2, pady=2)
 
