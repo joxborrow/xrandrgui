@@ -38,10 +38,14 @@ class xrandrgui(tk.Frame):
         self.optionmenu2.config(width=10)
         self.optionmenu2.grid(row=1, column=1, sticky="W", padx=2, pady=2)
 
+        # Frame 2
+        Frame2 = tk.Frame(master, bg="Blue")
+        Frame2.grid(row=2, column=0, columnspan=2, sticky="EWNS", padx=10)
+
         # Brightness
-        self.label1 = tk.Label(master, text="Brightness")
+        self.label1 = tk.Label(Frame2, text="Brightness")
         self.label1.grid(row=2, column=0, sticky="SE", padx=2, pady=2)
-        self.sc_brightness = tk.Scale(master, from_=0, to_=5, length=300,
+        self.sc_brightness = tk.Scale(Frame2, from_=0, to_=5, length=300,
                                    orient=tk.HORIZONTAL, resolution=.05,
                                    command=self.run_prog)
         self.sc_brightness.grid(row=2, column=1, padx=2, pady=2)
