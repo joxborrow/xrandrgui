@@ -14,6 +14,9 @@ class xrandrgui(tk.Frame):
         # Get attached monitors
         monitors = sp.getoutput("xrandr --query | awk '/ connected / {print $1}'")
 
+        # Get resolutions
+        resolutions = sp.getoutput("xrandr --query | awk '/   / {print $1}'")
+
         # Initialize Frame 1
         self.Frame1 = tk.LabelFrame(master)
         self.Frame1.grid(row=0, column=0, rowspan=2, columnspan=2, sticky="EWNS", padx=10, pady=(10,0))
@@ -24,17 +27,17 @@ class xrandrgui(tk.Frame):
         output_options = tuple(monitors.split("\n"))
         self.op1 = tk.StringVar(master)
         self.op1.set(output_options[0])
-        self.optionmenu1 = tk.OptionMenu(self.Frame1, self.op1, *output_options)
+        self.optionmenu1 = tk.OptionMenu(self.Frame1, self.op1, *output_options, command=self.run_prog)
         self.optionmenu1.config(width=10)
         self.optionmenu1.grid(row=0, column=1, sticky="W", padx=2, pady=2)
 
         # Resolution
         self.label01 = tk.Label(self.Frame1, text="Resolution")
         self.label01.grid(row=1, column=0, padx=2, pady=2, sticky="E")
-        resolution_options = ["test1", "test2"]
+        resolution_options = tuple(resolutions.split("\n"))
         self.op2 = tk.StringVar(master)
         self.op2.set(resolution_options[0])
-        self.optionmenu2 = tk.OptionMenu(self.Frame1, self.op2, *resolution_options)
+        self.optionmenu2 = tk.OptionMenu(self.Frame1, self.op2, *resolution_options, command=self.change_res)
         self.optionmenu2.config(width=10)
         self.optionmenu2.grid(row=1, column=1, sticky="W", padx=2, pady=2)
 
@@ -93,6 +96,14 @@ class xrandrgui(tk.Frame):
         command_string = command_string + ' --brightness ' + str(self.sc_brightness.get())
         command_string = command_string + ' --gamma ' + str(self.sc_r.get()) + ":" + \
                          str(self.sc_g.get()) + ":" + str(self.sc_b.get())
+        print(command_string)
+        sp.call(command_string, shell=True)
+
+    # Change resolution
+    def change_res(self, value):
+        command_string = 'xrandr --output '
+        command_string = command_string + self.op1.get()
+        command_string = command_string + ' --mode ' + self.op2.get()
         print(command_string)
         sp.call(command_string, shell=True)
 
