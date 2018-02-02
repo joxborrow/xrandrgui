@@ -41,6 +41,14 @@ class xrandrgui(tk.Frame):
         self.optionmenu2.config(width=10)
         self.optionmenu2.grid(row=1, column=1, sticky="W", padx=2, pady=2)
 
+        # X Scale
+        self.spinbox01 = tk.Spinbox(self.Frame1, from_=.1, to_=2, increment=.1)
+        self.spinbox01.grid(row=0, column=2, sticky="EWNS", padx=2, pady=2)
+
+        # Y Scale
+        self.spinbox02 = tk.Spinbox(self.Frame1, from_=.1, to_=2, increment=.1)
+        self.spinbox02.grid(row=1, column=2, sticky="EWNS", padx=2, pady=2)
+
         # Frame 2
         self.Frame2 = tk.LabelFrame(master, text="Brightness")
         self.Frame2.grid(row=2, column=0, columnspan=2, sticky="EWNS", padx=10, pady=10)
