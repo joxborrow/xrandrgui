@@ -42,22 +42,26 @@ class xrandrgui(tk.Frame):
         self.optionmenu2.grid(row=1, column=1, sticky="W", padx=2, pady=2)
 
         # X Scale
+        self.label02 = tk.Label(self.Frame1, text="X Scale")
+        self.label02.grid(row=0, column=2, sticky="E", padx=2, pady=2)
         self.spinbox01 = tk.Spinbox(self.Frame1, from_=.1, to_=2, increment=.1)
-        self.spinbox01.grid(row=0, column=2, sticky="EWNS", padx=2, pady=2)
+        self.spinbox01.grid(row=0, column=3, sticky="EWNS", padx=2, pady=2)
 
         # Y Scale
+        self.label03 = tk.Label(self.Frame1, text="Y Scale")
+        self.label03.grid(row=1, column=2, sticky="E", padx=2, pady=2)
         self.spinbox02 = tk.Spinbox(self.Frame1, from_=.1, to_=2, increment=.1)
-        self.spinbox02.grid(row=1, column=2, sticky="EWNS", padx=2, pady=2)
+        self.spinbox02.grid(row=1, column=3, sticky="EWNS", padx=2, pady=2)
 
         # Frame 2
         self.Frame2 = tk.LabelFrame(master, text="Brightness")
-        self.Frame2.grid(row=2, column=0, columnspan=2, sticky="EWNS", padx=10, pady=10)
+        self.Frame2.grid(row=2, column=0, columnspan=3, sticky="EWNS", padx=10, pady=10)
 
         # Brightness
-        self.sc_brightness = tk.Scale(self.Frame2, from_=0, to_=5, length=300,
+        self.sc_brightness = tk.Scale(self.Frame2, from_=0, to_=5, length=420,
                                    orient=tk.HORIZONTAL, resolution=.05,
                                    command=self.run_prog)
-        self.sc_brightness.grid(row=2, column=1, padx=2, pady=2)
+        self.sc_brightness.grid(row=2, column=1, padx=2, pady=2, columnspan=4, sticky="NSEW")
 
         # Frame 3
         self.Frame3 = tk.LabelFrame(master, text="Gamma")
@@ -67,7 +71,7 @@ class xrandrgui(tk.Frame):
         # R
         self.label3 = tk.Label(self.Frame3, text="R ")
         self.label3.grid(row=4, column=0, sticky="SE", padx=2, pady=2)
-        self.sc_r = tk.Scale(self.Frame3, from_=0, to_=5, length=300,
+        self.sc_r = tk.Scale(self.Frame3, from_=0, to_=5, length=400,
                           orient=tk.HORIZONTAL, resolution=.05,
                           command=self.run_prog)
         self.sc_r.grid(row=4, column=1, padx=2, pady=2)
@@ -75,7 +79,7 @@ class xrandrgui(tk.Frame):
         # G
         self.label4 = tk.Label(self.Frame3, text="G ")
         self.label4.grid(row=5, column=0, sticky="SE", padx=2, pady=2)
-        self.sc_g = tk.Scale(self.Frame3, from_=0, to_=5, length=300,
+        self.sc_g = tk.Scale(self.Frame3, from_=0, to_=5, length=400,
                           orient=tk.HORIZONTAL, resolution=.05,
                           command=self.run_prog)
         self.sc_g.grid(row=5, column=1, padx=2, pady=2)
@@ -83,7 +87,7 @@ class xrandrgui(tk.Frame):
         # B
         self.label5 = tk.Label(self.Frame3, text="B ")
         self.label5.grid(row=6, column=0, sticky="SE", padx=2, pady=2)
-        self.sc_b = tk.Scale(self.Frame3, from_=0, to_=5, length=300,
+        self.sc_b = tk.Scale(self.Frame3, from_=0, to_=5, length=400,
                           orient=tk.HORIZONTAL, resolution=.05,
                           command=self.run_prog)
         self.sc_b.grid(row=6, column=1, padx=2, pady=2)
