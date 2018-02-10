@@ -44,16 +44,19 @@ class xrandrgui(tk.Frame):
         # X Scale
         self.label02 = tk.Label(self.Frame1, text="X Scale")
         self.label02.grid(row=0, column=2, sticky="E", padx=2, pady=2)
-        init_spinbox=tk.StringVar(root)
+        init_spinbox = tk.StringVar(root)
         init_spinbox.set("1")
         self.spinbox01 = tk.Spinbox(self.Frame1, from_=.1, to_=2, increment=.1,
-                                    textvariable=init_spinbox, command=change_scale)
+                                    textvariable=init_spinbox, command=self.change_scale)
         self.spinbox01.grid(row=0, column=3, sticky="EWNS", padx=2, pady=2)
 
         # Y Scale
         self.label03 = tk.Label(self.Frame1, text="Y Scale")
         self.label03.grid(row=1, column=2, sticky="E", padx=2, pady=2)
-        self.spinbox02 = tk.Spinbox(self.Frame1, from_=.1, to_=2, increment=.1, textvariable=init_spinbox)
+        init_spinbox2 = tk.StringVar(root)
+        init_spinbox2.set("1")
+        self.spinbox02 = tk.Spinbox(self.Frame1, from_=.1, to_=2, increment=.1,
+                                    textvariable=init_spinbox2, command=self.change_scale)
         self.spinbox02.grid(row=1, column=3, sticky="EWNS", padx=2, pady=2)
 
         # Frame 2
@@ -123,11 +126,13 @@ class xrandrgui(tk.Frame):
         sp.call(command_string, shell=True)
 
     # Change Scale
-    def change_scale(self, value):
+    def change_scale(self):
         command_string = 'xrandr --output '
         command_string = command_string + self.op1.get()
-        command_string = ' --scale '
+        command_string = command_string + ' --scale '
         command_string = command_string + self.spinbox01.get() + 'x' + self.spinbox02.get()
+        print(command_string)
+        sp.call(command_string, shell=True)
 
 # Main
 if __name__ == '__main__':
