@@ -59,6 +59,16 @@ class xrandrgui(tk.Frame):
                                     textvariable=init_spinbox2, command=self.change_scale)
         self.spinbox02.grid(row=1, column=3, sticky="EWNS", padx=2, pady=2)
 
+        # Rotate
+        self.label04 = tk.Label(self.Frame1, text="Rotate")
+        self.label04.grid(row=2, column=2, sticky="E", padx=2, pady=2)
+        rotate_options = tuple({'normal', 'left', 'right', 'inverted'})
+        self.op3 = tk.StringVar(master)
+        self.op3.set(rotate_options[0])
+        self.optionmenu3 = tk.OptionMenu(self.Frame1, self.op3, *rotate_options, command=self.change_res)
+        self.optionmenu3.config(width=10)
+        self.optionmenu3.grid(row=2, column=3, sticky="NSEW", padx=2, pady=2)
+
         # Frame 2
         self.Frame2 = tk.LabelFrame(master, text="Brightness")
         self.Frame2.grid(row=2, column=0, columnspan=3, sticky="EWNS", padx=10, pady=10)
