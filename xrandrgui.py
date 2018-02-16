@@ -62,10 +62,10 @@ class xrandrgui(tk.Frame):
         # Rotate
         self.label04 = tk.Label(self.Frame1, text="Rotate")
         self.label04.grid(row=2, column=2, sticky="E", padx=2, pady=2)
-        rotate_options = tuple({'normal', 'left', 'right', 'inverted'})
+        rotate_options = tuple(('normal', 'left', 'right', 'inverted'))
         self.op3 = tk.StringVar(master)
         self.op3.set(rotate_options[0])
-        self.optionmenu3 = tk.OptionMenu(self.Frame1, self.op3, *rotate_options, command=self.change_res)
+        self.optionmenu3 = tk.OptionMenu(self.Frame1, self.op3, *rotate_options, command=self.change_rotation)
         self.optionmenu3.config(width=10)
         self.optionmenu3.grid(row=2, column=3, sticky="NSEW", padx=2, pady=2)
 
@@ -141,6 +141,15 @@ class xrandrgui(tk.Frame):
         command_string = command_string + self.op1.get()
         command_string = command_string + ' --scale '
         command_string = command_string + self.spinbox01.get() + 'x' + self.spinbox02.get()
+        print(command_string)
+        sp.call(command_string, shell=True)
+
+    # Change Rotation
+    def change_rotation(self, value):
+        command_string = 'xrandr --output '
+        command_string = command_string + self.op1.get()
+        command_string = command_string + ' --rotate '
+        command_string = command_string + self.op3.get()
         print(command_string)
         sp.call(command_string, shell=True)
 
