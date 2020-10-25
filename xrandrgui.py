@@ -110,11 +110,6 @@ class xrandrgui(tk.Frame):
 
         # Initialize control values
         self.sc_brightness.set(1)
-        #gamma = sp.getoutput("xrandr --verbose | awk '/Gamma/ {print $2}'").split(":")
-        #print(gamma)
-        #self.sc_r.set(1)
-        #self.sc_g.set(1)
-        #self.sc_b.set(1)
 
     # Execute xrandr
     def run_prog(self, value):
@@ -140,7 +135,8 @@ class xrandrgui(tk.Frame):
         command_string = 'xrandr --output '
         command_string = command_string + self.op1.get()
         command_string = command_string + ' --scale '
-        command_string = command_string + self.spinbox01.get() + 'x' + self.spinbox02.get()
+        command_string = command_string + self.spinbox01.get() + 'x'
+        + self.spinbox02.get()
         print(command_string)
         sp.call(command_string, shell=True)
 
