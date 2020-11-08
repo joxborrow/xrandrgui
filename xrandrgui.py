@@ -1,5 +1,9 @@
 #!/usr/bin/env python
-
+#----------------------------------------------------------------
+# This is a short script creating a gui interface to the 
+# xrandr command in linux. It makes adjustments easy for
+# anyone through a gui interface.
+#----------------------------------------------------------------
 import tkinter as tk
 import subprocess as sp
 
